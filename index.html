@@ -26,24 +26,24 @@
     }
 
     .chat-container {
-      background: rgba(15, 23, 42, 0.78);
+      background: rgba(15, 23, 42, 0.82);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(251, 146, 60, 0.25);
+      border: 1px solid rgba(251, 146, 60, 0.28);
       width: 100%;
-      max-width: 700px;
-      height: 86vh;
+      max-width: 720px;
+      height: 90vh;
       border-radius: 24px;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 40px rgba(249, 115, 22, 0.12);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 40px rgba(249, 115, 22, 0.14);
       overflow: hidden;
     }
 
     /* Header */
     .header {
-      background: rgba(2, 6, 23, 0.75);
-      padding: 1.1rem 1.4rem;
+      background: rgba(2, 6, 23, 0.8);
+      padding: 1rem 1.35rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -59,19 +59,19 @@
     }
 
     .logo-badge {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       border-radius: 12px;
       background: linear-gradient(135deg, #f97316, #ef4444);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       box-shadow: 0 4px 15px rgba(249, 115, 22, 0.45);
     }
 
     .brand-text h1 {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 800;
       background: linear-gradient(to right, #fb923c, #f87171);
       -webkit-background-clip: text;
@@ -80,56 +80,96 @@
     }
 
     .brand-text p {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: #94a3b8;
-      margin-top: 2px;
     }
 
     .controls {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
     }
 
-    .intensity-select {
+    .intensity-select, .icon-btn, .clear-btn {
       background: rgba(30, 41, 59, 0.85);
-      color: #fdba74;
-      border: 1px solid rgba(251, 146, 60, 0.35);
-      padding: 0.45rem 0.75rem;
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      padding: 0.42rem 0.75rem;
       border-radius: 10px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
       font-family: inherit;
-      cursor: pointer;
-      outline: none;
-    }
-
-    .intensity-select:focus {
-      border-color: #f97316;
-    }
-
-    .clear-btn {
-      background: rgba(51, 65, 85, 0.5);
-      color: #cbd5e1;
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      padding: 0.45rem 0.85rem;
-      border-radius: 10px;
-      font-size: 0.8rem;
-      font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
-    .clear-btn:hover {
-      background: rgba(239, 68, 68, 0.2);
-      border-color: rgba(239, 68, 68, 0.5);
-      color: #fca5a5;
+    .intensity-select {
+      color: #fdba74;
+      border-color: rgba(251, 146, 60, 0.35);
+    }
+
+    .icon-btn:hover, .clear-btn:hover {
+      border-color: #f97316;
+      color: #fff;
+    }
+
+    /* Ego HP Bar */
+    .ego-bar-wrapper {
+      background: rgba(2, 6, 23, 0.6);
+      padding: 0.6rem 1.35rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .ego-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      white-space: nowrap;
+      min-width: 115px;
+    }
+
+    .ego-track {
+      flex: 1;
+      height: 10px;
+      background: rgba(30, 41, 59, 0.95);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .ego-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #22c55e, #eab308);
+      border-radius: 999px;
+      transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1), background 0.45s ease;
+    }
+
+    .revive-btn {
+      display: none;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      border: none;
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      animation: pulse 1.4s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
     }
 
     /* Chat Area */
     .messages {
       flex: 1;
-      padding: 1.5rem;
+      padding: 1.35rem;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
@@ -137,9 +177,7 @@
       scroll-behavior: smooth;
     }
 
-    .messages::-webkit-scrollbar {
-      width: 6px;
-    }
+    .messages::-webkit-scrollbar { width: 6px; }
     .messages::-webkit-scrollbar-thumb {
       background: rgba(148, 163, 184, 0.25);
       border-radius: 999px;
@@ -148,7 +186,7 @@
     .msg-row {
       display: flex;
       flex-direction: column;
-      max-width: 82%;
+      max-width: 84%;
       animation: fadeSlide 0.25s ease-out;
     }
 
@@ -157,20 +195,13 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .msg-row.user {
-      align-self: flex-end;
-      align-items: flex-end;
-    }
-
-    .msg-row.bot {
-      align-self: flex-start;
-      align-items: flex-start;
-    }
+    .msg-row.user { align-self: flex-end; align-items: flex-end; }
+    .msg-row.bot { align-self: flex-start; align-items: flex-start; }
 
     .msg-header {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
       margin-bottom: 4px;
       padding: 0 4px;
     }
@@ -181,7 +212,7 @@
       color: #64748b;
     }
 
-    .copy-btn {
+    .action-btn {
       background: transparent;
       border: none;
       color: #94a3b8;
@@ -193,9 +224,9 @@
       transition: all 0.15s ease;
     }
 
-    .copy-btn:hover {
-      background: rgba(148, 163, 184, 0.15);
-      color: #f8fafc;
+    .action-btn:hover {
+      background: rgba(249, 115, 22, 0.2);
+      color: #fdba74;
     }
 
     .bubble {
@@ -215,40 +246,50 @@
     }
 
     .bot .bubble {
-      background: rgba(30, 41, 59, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.15);
+      background: rgba(30, 41, 59, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.16);
       color: #f1f5f9;
       border-bottom-left-radius: 4px;
+    }
+
+    .burn-badge {
+      display: inline-block;
+      margin-top: 0.55rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(249, 115, 22, 0.18);
+      border: 1px solid rgba(249, 115, 22, 0.45);
+      color: #fdba74;
     }
 
     /* Quick Prompts */
     .suggestions {
       display: flex;
       gap: 0.5rem;
-      padding: 0.65rem 1.25rem;
+      padding: 0.6rem 1.25rem;
       overflow-x: auto;
-      background: rgba(2, 6, 23, 0.4);
+      background: rgba(2, 6, 23, 0.45);
       border-top: 1px solid rgba(148, 163, 184, 0.08);
     }
 
-    .suggestions::-webkit-scrollbar {
-      display: none;
-    }
+    .suggestions::-webkit-scrollbar { display: none; }
 
     .chip {
-      background: rgba(30, 41, 59, 0.8);
+      background: rgba(30, 41, 59, 0.85);
       color: #cbd5e1;
       border: 1px solid rgba(251, 146, 60, 0.25);
-      padding: 0.4rem 0.8rem;
+      padding: 0.38rem 0.78rem;
       border-radius: 999px;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       white-space: nowrap;
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
     .chip:hover {
-      background: rgba(249, 115, 22, 0.2);
+      background: rgba(249, 115, 22, 0.22);
       color: #fdba74;
       border-color: #f97316;
     }
@@ -256,18 +297,18 @@
     /* Input Area */
     .input-area {
       display: flex;
-      padding: 1rem 1.25rem;
-      background: rgba(2, 6, 23, 0.85);
+      padding: 0.95rem 1.25rem;
+      background: rgba(2, 6, 23, 0.88);
       gap: 0.65rem;
       border-top: 1px solid rgba(148, 163, 184, 0.15);
     }
 
     input {
       flex: 1;
-      padding: 0.85rem 1.1rem;
+      padding: 0.82rem 1.05rem;
       border-radius: 14px;
       border: 1px solid rgba(148, 163, 184, 0.25);
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.92);
       color: #f8fafc;
       font-size: 0.95rem;
       font-family: inherit;
@@ -284,7 +325,7 @@
       background: linear-gradient(135deg, #f97316, #ea580c);
       color: #fff;
       border: none;
-      padding: 0 1.4rem;
+      padding: 0 1.35rem;
       border-radius: 14px;
       font-weight: 700;
       font-size: 0.95rem;
@@ -313,7 +354,7 @@
         <div class="logo-badge">🔥</div>
         <div class="brand-text">
           <h1>RoastBot</h1>
-          <p>Accurate answers served with zero mercy</p>
+          <p>Smart answers, zero mercy 💀</p>
         </div>
       </div>
       <div class="controls">
@@ -322,8 +363,17 @@
           <option value="spicy" selected>🔥 Spicy</option>
           <option value="savage">💀 Savage</option>
         </select>
+        <button class="icon-btn" id="sound-btn" title="Toggle sound effects">🔊 SFX</button>
         <button class="clear-btn" id="clear-btn" title="Reset chat">Clear</button>
       </div>
+    </div>
+
+    <div class="ego-bar-wrapper">
+      <span class="ego-label" id="ego-label">🛡️ Ego HP: 100%</span>
+      <div class="ego-track">
+        <div class="ego-fill" id="ego-fill"></div>
+      </div>
+      <button class="revive-btn" id="revive-btn">❤️ Revive Ego</button>
     </div>
 
     <div class="messages" id="chat-box">
@@ -331,19 +381,20 @@
         <div class="msg-header">
           <span class="sender-label">RoastBot</span>
         </div>
-        <div class="bubble">Pick your heat level above and ask me anything—I'll give you the right answer and roast your life choices for free.</div>
+        <div class="bubble">Your Ego HP starts at 100% 🛡️. Ask me a real question or pick a Roast Challenge below—let's see how long you survive 😭🔥</div>
       </div>
     </div>
 
     <div class="suggestions">
-      <button class="chip" onclick="usePrompt('Why is the sky blue?')">Why is the sky blue?</button>
-      <button class="chip" onclick="usePrompt('What is 15% of 80?')">What is 15% of 80?</button>
-      <button class="chip" onclick="usePrompt('How do I get better at coding?')">How do I get better at coding?</button>
-      <button class="chip" onclick="usePrompt('Tell me a fun fact')">Tell me a fun fact</button>
+      <button class="chip" onclick="usePrompt('Roast my sleep schedule—I stay up way too late')">😴 Roast my sleep schedule</button>
+      <button class="chip" onclick="usePrompt('Roast my screen time—I am on my phone all day')">📱 Roast my screen time</button>
+      <button class="chip" onclick="usePrompt('Roast my music taste')">🎧 Roast my music taste</button>
+      <button class="chip" onclick="usePrompt('Why is the sky blue?')">🌤️ Why is the sky blue?</button>
+      <button class="chip" onclick="usePrompt('What is 15% of 80?')">🧮 What is 15% of 80?</button>
     </div>
 
     <form class="input-area" id="chat-form">
-      <input type="text" id="user-input" placeholder="Ask a question or say something..." autocomplete="off" required />
+      <input type="text" id="user-input" placeholder="Ask a question or dare me to roast you..." autocomplete="off" required />
       <button type="submit" id="send-btn">Roast 🔥</button>
     </form>
   </div>
@@ -355,6 +406,77 @@
     const sendBtn = document.getElementById("send-btn");
     const clearBtn = document.getElementById("clear-btn");
     const intensitySelect = document.getElementById("intensity-select");
+    const soundBtn = document.getElementById("sound-btn");
+    const egoLabel = document.getElementById("ego-label");
+    const egoFill = document.getElementById("ego-fill");
+    const reviveBtn = document.getElementById("revive-btn");
+
+    let egoHP = 100;
+    let soundEnabled = true;
+
+    // Built-in Web Audio API Sound Effects (no external audio files needed)
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playTone(type) {
+      if (!soundEnabled) return;
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      const now = audioCtx.currentTime;
+      if (type === "send") {
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(420, now);
+        osc.frequency.exponentialRampToValueAtTime(680, now + 0.09);
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+        osc.start(now);
+        osc.stop(now + 0.09);
+      } else if (type === "burn") {
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.exponentialRampToValueAtTime(95, now + 0.25);
+        gain.gain.setValueAtTime(0.14, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      }
+    }
+
+    soundBtn.addEventListener("click", () => {
+      soundEnabled = !soundEnabled;
+      soundBtn.textContent = soundEnabled ? "🔊 SFX" : "🔇 Muted";
+    });
+
+    function updateEgo(damage) {
+      egoHP = Math.max(0, egoHP - damage);
+      egoFill.style.width = `${egoHP}%`;
+
+      if (egoHP > 60) {
+        egoFill.style.background = "linear-gradient(90deg, #22c55e, #84cc16)";
+        egoLabel.textContent = `🛡️ Ego HP: ${egoHP}%`;
+      } else if (egoHP > 25) {
+        egoFill.style.background = "linear-gradient(90deg, #f59e0b, #f97316)";
+        egoLabel.textContent = `⚠️ Ego HP: ${egoHP}%`;
+      } else if (egoHP > 0) {
+        egoFill.style.background = "linear-gradient(90deg, #ef4444, #dc2626)";
+        egoLabel.textContent = `🔥 Ego HP: ${egoHP}%`;
+      } else {
+        egoFill.style.background = "#ef4444";
+        egoLabel.textContent = `💀 Ego Destroyed!`;
+        reviveBtn.style.display = "inline-block";
+      }
+    }
+
+    reviveBtn.addEventListener("click", () => {
+      egoHP = 100;
+      egoFill.style.width = "100%";
+      egoFill.style.background = "linear-gradient(90deg, #22c55e, #eab308)";
+      egoLabel.textContent = "🛡️ Ego HP: 100%";
+      reviveBtn.style.display = "none";
+      addBubble("Ego revived to 100% ❤️—try not to lose it all in two messages this time 🤡", "bot", false);
+    });
 
     const intensityStyles = {
       mild: "Keep the roast playful, friendly, and gentle—like teasing a close friend.",
@@ -365,12 +487,12 @@
     function getSystemPrompt() {
       const level = intensitySelect.value;
       return (
-        "You are RoastBot: a razor-sharp, sarcastic genius comedian.\n" +
+        "You are RoastBot: a razor-sharp, sarcastic comedian who loves using expressive emojis (like 💀, 😭, 🤡, 🔥, 👀, 🫠).\n" +
         "Rules:\n" +
         "1. If the user asks a factual, math, coding, or general knowledge question, ALWAYS give the 100% accurate, helpful answer—never lie or make up wrong facts.\n" +
-        "2. At the exact same time, roast the user for asking it, how they phrased it, or what they said. Weave the correct answer and the roast together naturally.\n" +
+        "2. At the exact same time, roast the user for asking it, how they phrased it, or what they said. Use 2 to 4 well-placed emojis naturally inside your reply.\n" +
         "3. Tone instruction: " + intensityStyles[level] + "\n" +
-        "4. Keep responses punchy and entertaining."
+        "4. On a brand-new final line at the very end of every reply, output ONLY a burn score in this exact format: BURN_SCORE: X/10 (where X is a number from 5 to 10 based on how hard you roasted them)."
       );
     }
 
@@ -380,7 +502,71 @@
       conversation[0].content = getSystemPrompt();
     });
 
-    function addBubble(text, sender, showCopy = false) {
+    // Generate a shareable PNG Roast Card using HTML5 Canvas
+    function downloadRoastCard(roastText, scoreText) {
+      const canvas = document.createElement("canvas");
+      canvas.width = 800;
+      canvas.height = 460;
+      const ctx = canvas.getContext("2d");
+
+      // Background gradient
+      const grad = ctx.createLinearGradient(0, 0, 800, 460);
+      grad.addColorStop(0, "#1e1b4b");
+      grad.addColorStop(0.5, "#0f172a");
+      grad.addColorStop(1, "#2a120a");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 800, 460);
+
+      // Border
+      ctx.strokeStyle = "#f97316";
+      ctx.lineWidth = 4;
+      ctx.strokeRect(18, 18, 764, 424);
+
+      // Header
+      ctx.fillStyle = "#fb923c";
+      ctx.font = "bold 28px Inter, sans-serif";
+      ctx.fillText("🔥 RoastBot", 45, 68);
+
+      if (scoreText) {
+        ctx.fillStyle = "#fca5a5";
+        ctx.font = "bold 20px Inter, sans-serif";
+        ctx.fillText(scoreText, 560, 68);
+      }
+
+      // Wrap roast text
+      ctx.fillStyle = "#f8fafc";
+      ctx.font = "22px Inter, sans-serif";
+      const words = roastText.split(" ");
+      let line = "";
+      let y = 130;
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + " ";
+        if (ctx.measureText(testLine).width > 700 && n > 0) {
+          ctx.fillText(line, 45, y);
+          line = words[n] + " ";
+          y += 34;
+          if (y > 370) {
+            line += "...";
+            break;
+          }
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line, 45, y);
+
+      // Footer
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = "16px Inter, sans-serif";
+      ctx.fillText("trantbon.github.io/MY-New_website", 45, 415);
+
+      const link = document.createElement("a");
+      link.download = "roastbot-card.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    }
+
+    function addBubble(text, sender, showActions = false) {
       const row = document.createElement("div");
       row.className = `msg-row ${sender}`;
 
@@ -396,17 +582,30 @@
       bubble.className = "bubble";
       bubble.textContent = text;
 
-      if (showCopy) {
+      if (showActions) {
         const copyBtn = document.createElement("button");
         copyBtn.type = "button";
-        copyBtn.className = "copy-btn";
+        copyBtn.className = "action-btn";
         copyBtn.textContent = "Copy";
         copyBtn.addEventListener("click", () => {
-          navigator.clipboard.writeText(bubble.textContent);
+          navigator.clipboard.writeText(bubble.dataset.cleanText || bubble.textContent);
           copyBtn.textContent = "Copied!";
           setTimeout(() => (copyBtn.textContent = "Copy"), 1500);
         });
+
+        const cardBtn = document.createElement("button");
+        cardBtn.type = "button";
+        cardBtn.className = "action-btn";
+        cardBtn.textContent = "📸 Share Card";
+        cardBtn.addEventListener("click", () => {
+          downloadRoastCard(
+            bubble.dataset.cleanText || bubble.textContent,
+            bubble.dataset.scoreText || ""
+          );
+        });
+
         msgHeader.appendChild(copyBtn);
+        msgHeader.appendChild(cardBtn);
       }
 
       row.appendChild(msgHeader);
@@ -414,6 +613,35 @@
       chatBox.appendChild(row);
       chatBox.scrollTop = chatBox.scrollHeight;
       return bubble;
+    }
+
+    // Typewriter animation for bot replies
+    function typeReply(bubble, fullText, scoreNumber) {
+      return new Promise((resolve) => {
+        bubble.textContent = "";
+        bubble.dataset.cleanText = fullText;
+        let i = 0;
+        const speed = 14;
+        const timer = setInterval(() => {
+          bubble.textContent += fullText.charAt(i);
+          i++;
+          chatBox.scrollTop = chatBox.scrollHeight;
+          if (i >= fullText.length) {
+            clearInterval(timer);
+            if (scoreNumber) {
+              const badge = document.createElement("div");
+              badge.className = "burn-badge";
+              const scoreLabel = `🔥 Burn Rating: ${scoreNumber}/10`;
+              badge.textContent = scoreLabel;
+              bubble.dataset.scoreText = scoreLabel;
+              bubble.appendChild(document.createElement("br"));
+              bubble.appendChild(badge);
+              chatBox.scrollTop = chatBox.scrollHeight;
+            }
+            resolve();
+          }
+        }, speed);
+      });
     }
 
     function usePrompt(text) {
@@ -424,7 +652,7 @@
     clearBtn.addEventListener("click", () => {
       conversation = [{ role: "system", content: getSystemPrompt() }];
       chatBox.innerHTML = "";
-      addBubble("Fresh start. Try asking something smarter this time.", "bot", false);
+      addBubble("Fresh start 🧹. Your Ego HP is still at " + egoHP + "%—try asking something smarter this time.", "bot", false);
     });
 
     chatForm.addEventListener("submit", async (e) => {
@@ -432,13 +660,14 @@
       const text = userInput.value.trim();
       if (!text) return;
 
+      playTone("send");
       conversation[0].content = getSystemPrompt();
       addBubble(text, "user", false);
       conversation.push({ role: "user", content: text });
       userInput.value = "";
       sendBtn.disabled = true;
 
-      const loadingBubble = addBubble("Cooking up a roast...", "bot", true);
+      const loadingBubble = addBubble("Cooking up a roast... 🔥", "bot", true);
 
       try {
         const response = await fetch("https://text.pollinations.ai/", {
@@ -453,12 +682,23 @@
 
         if (!response.ok) throw new Error("Server busy");
 
-        const reply = await response.text();
-        loadingBubble.textContent = reply;
-        conversation.push({ role: "assistant", content: reply });
+        const rawReply = await response.text();
+        conversation.push({ role: "assistant", content: rawReply });
+
+        // Extract BURN_SCORE: X/10 if present
+        let score = Math.floor(Math.random() * 4) + 6; // fallback 6-9
+        const scoreMatch = rawReply.match(/BURN_SCORE:\s*(\d+)\s*\/\s*10/i);
+        if (scoreMatch) {
+          score = Math.min(10, Math.max(1, parseInt(scoreMatch[1], 10)));
+        }
+        const cleanReply = rawReply.replace(/BURN_SCORE:\s*\d+\s*\/\s*10/i, "").trim();
+
+        playTone("burn");
+        await typeReply(loadingBubble, cleanReply, score);
+        updateEgo(score * 3); // Drains 15% to 30% Ego HP per roast
       } catch (err) {
         loadingBubble.textContent =
-          "My brain lagged harder than your Wi-Fi. Hit send again!";
+          "My brain lagged harder than your Wi-Fi 🫠. Hit send again!";
       } finally {
         sendBtn.disabled = false;
         userInput.focus();
