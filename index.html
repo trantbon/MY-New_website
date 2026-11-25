@@ -670,19 +670,31 @@
       const loadingBubble = addBubble("Cooking up a roast... 🔥", "bot", true);
 
       try {
-        const response = await fetch("https://text.pollinations.ai/", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            messages: conversation,
-            model: "openai",
-            seed: Math.floor(Math.random() * 10000)
-          })
-        });
+        let rawReply = "";
 
-        if (!response.ok) throw new Error("Server busy");
+        // Attempt 1: Standard POST request with full conversation history
+        try {
+          const response = await fetch("https://text.pollinations.ai/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              messages: conversation,
+              model: "openai",
+              seed: Math.floor(Math.random() * 10000)
+            })
+          });
+          if (!response.ok) throw new Error("POST status " + response.status);
+          rawReply = await response.text();
+        } catch (postErr) {
+          console.warn("POST failed, switching to GET fallback:", postErr);
+          // Attempt 2: Simpler GET request fallback
+          const fullPrompt = `${getSystemPrompt()}\n\nUser says: "${text}"`;
+          const getUrl = `https://text.pollinations.ai/${encodeURIComponent(fullPrompt)}?model=openai&seed=${Math.floor(Math.random() * 10000)}`;
+          const fallbackRes = await fetch(getUrl);
+          if (!fallbackRes.ok) throw new Error("GET status " + fallbackRes.status);
+          rawReply = await fallbackRes.text();
+        }
 
-        const rawReply = await response.text();
         conversation.push({ role: "assistant", content: rawReply });
 
         // Extract BURN_SCORE: X/10 if present
@@ -697,6 +709,7 @@
         await typeReply(loadingBubble, cleanReply, score);
         updateEgo(score * 3); // Drains 15% to 30% Ego HP per roast
       } catch (err) {
+        console.error("Both POST and GET failed:", err);
         loadingBubble.textContent =
           "My brain lagged harder than your Wi-Fi 🫠. Hit send again!";
       } finally {
